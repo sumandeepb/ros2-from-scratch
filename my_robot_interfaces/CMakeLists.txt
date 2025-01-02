@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(my_cpp_pkg)
+project(my_robot_interfaces)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,26 +7,13 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(example_interfaces REQUIRED)
-find_package(my_robot_interfaces REQUIRED)
-
-add_executable(test_node src/my_first_node.cpp)
-ament_target_dependencies(test_node rclcpp)
-add_executable(number_publisher src/number_publisher.cpp)
-ament_target_dependencies(number_publisher rclcpp example_interfaces)
-add_executable(number_counter src/number_counter.cpp)
-ament_target_dependencies(number_counter rclcpp example_interfaces)
-add_executable(custom_publisher src/custom_publisher.cpp)
-ament_target_dependencies(custom_publisher rclcpp my_robot_interfaces)
-
-install(TARGETS
-  test_node
-  number_publisher
-  number_counter
-  custom_publisher
-  DESTINATION lib/${PROJECT_NAME}/
+# uncomment the following section in order to fill in
+# further dependencies manually.
+find_package(rosidl_default_generators REQUIRED)
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/HardwareStatus.msg"
 )
+ament_export_dependencies(rosidl_default_runtime)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
