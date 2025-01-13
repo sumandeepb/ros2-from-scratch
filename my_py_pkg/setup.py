@@ -23,7 +23,8 @@ setup(
             "test_node = my_py_pkg.my_first_node:main",
             "number_publisher = my_py_pkg.number_publisher:main",
             "number_counter = my_py_pkg.number_counter:main",
-            "custom_publisher = my_py_pkg.custom_publisher:main"
+            "custom_publisher = my_py_pkg.custom_publisher:main",
+            "reset_counter_client =  my_py_pkg.reset_counter_client:main"
         ],
     },
 )
