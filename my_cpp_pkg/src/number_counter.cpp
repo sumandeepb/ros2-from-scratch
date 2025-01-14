@@ -8,7 +8,7 @@ using Int64 = example_interfaces::msg::Int64;
 
 class NumberCounterNode : public rclcpp::Node {
 public:
-    NumberCounterNode() : Node("number_subscriber") {
+    NumberCounterNode() : Node("number_counter") {
         number_subscriber_ = this->create_subscription<Int64>("number",
                                                               10,
                                                               std::bind(&NumberCounterNode::callbackNumber,
