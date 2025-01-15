@@ -1,7 +1,6 @@
 #include "my_robot_interfaces/srv/reset_counter.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-using namespace std::placeholders;
 using namespace std::chrono_literals;
 using ResetCounter = my_robot_interfaces::srv::ResetCounter;
 
@@ -19,7 +18,8 @@ public:
         request->reset_value = value;
         client_->async_send_request(request,
                                     std::bind(&ResetCounterClientNode::callbackResetCounterResponse,
-                                              this, _1));
+                                              this,
+                                              std::placeholders::_1));
     }
 
     void callbackResetCounterResponse(rclcpp::Client<ResetCounter>::SharedFuture future) {
